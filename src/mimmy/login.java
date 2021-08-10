@@ -35,6 +35,7 @@ public class login {
                 // TODO Auto-generated method stub
                 f.dispose();
                 passcode p = new passcode();
+                p.setVisible(true);
             }
         });
     }
