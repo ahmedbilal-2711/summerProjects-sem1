@@ -1,6 +1,5 @@
 
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.canvas.parser.clipper.Paths;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
