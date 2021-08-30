@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 //delete button
-package mimmy;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
