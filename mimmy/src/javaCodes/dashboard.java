@@ -1,4 +1,4 @@
-
+package javaCodes;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;
@@ -49,7 +49,7 @@ public class dashboard extends javax.swing.JFrame {
             ipadd = ip.toString().substring(12);
             System.out.println("Your current IP address : " + ipadd); 
          } catch (UnknownHostException ex) {
-            Logger.getLogger(passwordsgui.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(passwordsgui.class.getName()).log(Level.SEVERE, null, ex);
          }
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver") ;
