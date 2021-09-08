@@ -20,12 +20,12 @@ import javax.swing.*;
  *....
  * @author AlPhA
  */
-public class progressbar extends javax.swing.JFrame  {
+public class Moodselector extends javax.swing.JFrame  {
 
     /**
      * Creates new form progressbar
      */
-    public progressbar() {
+    public Moodselector() {
        
         initComponents();
        
@@ -42,23 +42,62 @@ public class progressbar extends javax.swing.JFrame  {
         t.add("mood",stre,md,reason.getText());  
         }
         
- 
-  public int rationumber(String m)
-  {
-      int count=0;
-      int rc=moodtable.getRowCount();
-      System.out.println(rc);
-      for(int i=0;i<rc;i++)
-        {
-            String md=(String) moodtable.getValueAt(i,1);
-            if(md.equals(m))
-            {
-               count++; 
-            }
-        }
-      count=(count*100)/rc;
       
-      return count;
+ 
+ public int getrows()
+ {
+     int numberRow=0;
+       try{ 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mimmy", "root", "12345");
+      
+    String query = "select count(*) from mood";
+    PreparedStatement st = conn.prepareStatement(query);
+    ResultSet rs = st.executeQuery();
+    
+    while(rs.next()){
+        numberRow = rs.getInt("count(*)");
+        
+        
+          }
+       }catch(Exception e)
+          {
+              System.out.println("not working"); 
+          }
+     
+       return numberRow;
+ }
+  public double moodchecker(String mood)
+  {
+      
+      int counter=0;
+      try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mimmy", "root", "12345");
+
+            String sql ="select * from mood";
+            PreparedStatement pst = conn.prepareStatement(sql);
+      
+            ResultSet rs = pst.executeQuery("select * from mood"); 
+             if (rs != null)
+                 while(rs.next())
+                     
+                 { 
+                     
+                     if((rs.getString(2)).equals(mood))
+                 {
+                     counter++;
+                     
+                 }}
+            
+            //JOptionPane.showMessageDialog(null, "ADDED INTO " + tablename + " SUCCESFULLY");
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      
+      return counter;
   }
 
   
@@ -72,28 +111,19 @@ public class progressbar extends javax.swing.JFrame  {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        moodtable = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         new java.awt.Color(13, 8, 154,80);
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        moodtable = new javax.swing.JTable();
         angry = new javax.swing.JButton();
         moodratio = new javax.swing.JButton();
         happy = new javax.swing.JButton();
         sad = new javax.swing.JButton();
         reason = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        re = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("       MOOD");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 230, 50));
-
-        jPanel1.setBackground(new java.awt.Color(13, 8, 154,80));
 
         moodtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +134,16 @@ public class progressbar extends javax.swing.JFrame  {
             }
         ));
         jScrollPane1.setViewportView(moodtable);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("       MOOD");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 230, 50));
+
+        jPanel1.setBackground(new java.awt.Color(13, 8, 154,80));
 
         angry.setBackground(new java.awt.Color(179, 255, 255));
         angry.setText("ANGRY");
@@ -137,7 +177,8 @@ public class progressbar extends javax.swing.JFrame  {
             }
         });
 
-        jLabel1.setText("REASON");
+        re.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
+        re.setText("REASON");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,49 +186,48 @@ public class progressbar extends javax.swing.JFrame  {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(happy, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(angry, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(reason)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(sad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(moodratio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(144, 144, 144)
+                        .addComponent(re, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(happy, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(angry, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(reason)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(sad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(moodratio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reason, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(re, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(moodratio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sad, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(angry, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(happy, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGap(194, 194, 194))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 560, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 560, 170));
+
+        jButton1.setBackground(new java.awt.Color(179, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AlPhA\\E-diary\\summerProjects-sem1\\mimmy\\src\\images\\previous.png")); // NOI18N
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\AlPhA\\E-diary\\summerProjects-sem1\\mimmy\\src\\images\\blue_bg.jpg")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 720, 530));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 310));
 
         pack();
         setLocationRelativeTo(null);
@@ -213,16 +253,19 @@ public class progressbar extends javax.swing.JFrame  {
 
     private void moodratioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodratioActionPerformed
 
-        TODOLIST t=new TODOLIST();
-        t.check(moodtable,"mood");
-        int fir=rationumber("HAPPY");
-        int sec=rationumber("ANGRY");
-        int thir=rationumber("SAD");
-       try{ ProgressBarDemo d= new ProgressBarDemo(fir,sec,thir);
-       }catch(Exception e)
-       {
-           e.printStackTrace();
-       }
+      int totalrows=getrows();
+      double fir=(moodchecker("HAPPY")*100)/totalrows;
+      double sec=(moodchecker("ANGRY")*100)/totalrows;
+      double thir=(moodchecker("SAD")*100)/totalrows;
+        try {
+            Moodbars m=new Moodbars(fir,sec,thir);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Moodselector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Moodselector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
        
     }//GEN-LAST:event_moodratioActionPerformed
 
@@ -243,20 +286,21 @@ public class progressbar extends javax.swing.JFrame  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(progressbar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moodselector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(progressbar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moodselector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(progressbar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moodselector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(progressbar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Moodselector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new progressbar().setVisible(true);
+                new Moodselector().setVisible(true);
             }
         });
     }
@@ -264,13 +308,14 @@ public class progressbar extends javax.swing.JFrame  {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton angry;
     private javax.swing.JButton happy;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton moodratio;
     private javax.swing.JTable moodtable;
+    private javax.swing.JLabel re;
     private javax.swing.JTextField reason;
     private javax.swing.JButton sad;
     // End of variables declaration//GEN-END:variables

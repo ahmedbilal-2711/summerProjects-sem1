@@ -17,49 +17,60 @@ import javax.swing.*;
 import static javax.swing.SpringLayout.HEIGHT;
 import static javax.swing.SpringLayout.WIDTH;
 
-public class ProgressBarDemo {
+public class Moodbars {
 
 	JFrame frame = new JFrame();
+        JPanel panel=new JPanel();
 	JProgressBar bar = new JProgressBar(0,100);
         JProgressBar bar1 = new JProgressBar(0,100);
         JProgressBar bar2 = new JProgressBar(0,100);
         JLabel happy=new JLabel("HAPPY");
         JLabel sad=new JLabel("SAD");
         JLabel angry=new JLabel("ANGRY");
-        public static int ml=40;
-        public static int bl=50;
+        public static int ml=120;
+        public static int bl=130;
         public static int ct=0;
-	ProgressBarDemo(int fir,int sec,int thir) throws InterruptedException, IOException{
+           JLabel bg;
+	Moodbars(double fir,double sec,double thir) throws InterruptedException, IOException{
 
-               /* JLabel label=new JLabel();
-		ImageIcon image = new ImageIcon("C:\\Users\\AlPhA\\Desktop\\bg3.jpg");
-                Image nimg=image.getImage();
-                Image mimg=nimg.getScaledInstance(600, 600, java.awt.Image.SCALE_SMOOTH);
-                image=new ImageIcon(nimg);
-                label.setIcon(image);
-                label.setVisible(true);
-                frame.add(label);*/
+    	
+           
+              ImageIcon imgh=new ImageIcon("C:\\Users\\AlPhA\\Desktop\\sg.jpg");
+              bg=new JLabel("",imgh,JLabel.CENTER);
+              bg.setBounds(0, 0, 700, 500);
+               frame.add(bg);   
+    
+            JLabel label=new JLabel("YOUR MONTHLY RATIO");
+               label.setFont(new Font("MV Boli",Font.BOLD,30));
+               label.setBounds(150,10,420,70);
+		label.setForeground(Color.MAGENTA);
+                bg.add(label);
+    
                 
-    //               ImageIcon img = new ImageIcon(ImageIO.read(new File("welcome.png").getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH)));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 700);
-		frame.setLayout(null);
+               
+                frame.setLayout(null); 
+              
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setBackground(Color.MAGENTA);
+		frame.setSize(700, 500);
+		
 		frame.setVisible(true);
+                
 		
 		fill(happy,bar ,YELLOW,fir);
                 fill(angry,bar1,CYAN,sec);
                 fill(sad,bar2,ORANGE,thir);
 	}
-        public void fill(JLabel mood,JProgressBar ba,Color f,int lim) throws InterruptedException
+        public void fill(JLabel mood,JProgressBar ba,Color f,double lim) throws InterruptedException
         {
            // System.out.println(ml+" "+ct);
              ct=ct+1;
-             frame.add(ba);
-             frame.add(mood);
+            bg.add(ba);
+            bg.add(mood);
              ba.setBounds(250, bl, 420, 50);
              mood.setBounds(10, ml,100,100);
              mood.setFont(new Font("MV Boli",Font.BOLD,25));
-             
+             mood.setForeground(Color.CYAN);
              ba.setValue(0);
             ba.setFont(new Font("MV Boli",Font.BOLD,25));
             for(int i=0;i<=lim;i++)

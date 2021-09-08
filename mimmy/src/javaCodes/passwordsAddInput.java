@@ -1,4 +1,4 @@
-
+package javaCodes;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;

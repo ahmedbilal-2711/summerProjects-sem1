@@ -60,6 +60,8 @@ public class TODOLIST extends javax.swing.JFrame {
             pst.setString(3, s3);
 
             pst.executeUpdate();
+            
+            
             JOptionPane.showMessageDialog(null, "ADDED INTO " + tablename + " SUCCESFULLY");
             conn.close();
 
