@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import net.proteanit.sql.DbUtils;
+//import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -47,7 +47,7 @@ public class todo_list extends javax.swing.JFrame {
         task_tbl.getTableHeader().getColumnModel().getColumn(2).setHeaderRenderer(MyHeaderRender);
        
     }
-    Time time = new Time();
+//    Time time = new Time();
     public void add(String tablename, String s1, String s2, String s3) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -76,7 +76,7 @@ public class todo_list extends javax.swing.JFrame {
             String sql = "select * from " + tab;
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            tablename.setModel(DbUtils.resultSetToTableModel(rs));
+//            tablename.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ITS NOT WORKING");
@@ -362,8 +362,8 @@ public class todo_list extends javax.swing.JFrame {
     }//GEN-LAST:event_myTask_tfActionPerformed
 
     private void time_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_time_btnActionPerformed
-        time.showPopup();
-        time.setTextRefernce(time_tf);
+//        time.showPopup();
+//        time.setTextRefernce(time_tf);
     }//GEN-LAST:event_time_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed

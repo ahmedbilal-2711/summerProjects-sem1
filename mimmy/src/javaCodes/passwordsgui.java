@@ -150,7 +150,7 @@ public class passwordsgui extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         back.setBackground(new java.awt.Color(0, 0, 0));
-        back.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\passwordsBack.png")); // NOI18N
+        back.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\passwordsBack.png")); // NOI18N
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -174,7 +174,7 @@ public class passwordsgui extends javax.swing.JFrame {
 
         getContentPane().add(backPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 40));
 
-        headerImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\passwordsBg.png")); // NOI18N
+        headerImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\passwordsBg.png")); // NOI18N
         getContentPane().add(headerImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 40));
 
         edit.setBackground(new java.awt.Color(0, 0, 0));
@@ -251,7 +251,7 @@ public class passwordsgui extends javax.swing.JFrame {
 
         getContentPane().add(addPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 50, 30));
 
-        footerImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\passwordsBg.png")); // NOI18N
+        footerImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\passwordsBg.png")); // NOI18N
         getContentPane().add(footerImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 500, 50));
 
         passTable.setAutoCreateRowSorter(true);
@@ -291,6 +291,8 @@ public class passwordsgui extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
         dispose();
+        dashboard db = new dashboard();
+        db.setVisible(true);
     //  menu m = new menu();
     }//GEN-LAST:event_backActionPerformed
 

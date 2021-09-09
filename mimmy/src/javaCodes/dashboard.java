@@ -140,7 +140,7 @@ public class dashboard extends javax.swing.JFrame {
 
         panelBg.setBackground(new java.awt.Color(204, 204, 204,85));
 
-        diaryBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\diaryBtn.png")); // NOI18N
+        diaryBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\diaryBtn.png")); // NOI18N
         diaryBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         diaryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +148,7 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
-        addressBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\addressBtn.png")); // NOI18N
+        addressBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\addressBtn.png")); // NOI18N
         addressBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         addressBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +156,7 @@ public class dashboard extends javax.swing.JFrame {
             }
         });
 
-        passwordsBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\passBtm.png")); // NOI18N
+        passwordsBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\passBtn.png")); // NOI18N
         passwordsBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         passwordsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +200,7 @@ public class dashboard extends javax.swing.JFrame {
             recentsTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        todoBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\todoBtn.png")); // NOI18N
+        todoBtn.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\todoBtn.png")); // NOI18N
         todoBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
         todoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +265,7 @@ public class dashboard extends javax.swing.JFrame {
 
         getContentPane().add(panelBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 410, 330));
 
-        bgImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\dashBg.png")); // NOI18N
+        bgImg.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\dashBg.png")); // NOI18N
         getContentPane().add(bgImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

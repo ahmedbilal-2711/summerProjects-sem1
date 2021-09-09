@@ -13,13 +13,24 @@ public class logoMimmy {
 
     logoMimmy(){
         JFrame f = new JFrame();
+        JLabel signIn = new JLabel("Press the icon to Sign in");
+        JLabel signUp = new JLabel("Want to create new account ?");
+        JButton signUpBtn = new JButton("Sign Up");
         f.getContentPane().setLayout(null);
         JLabel l1 = new JLabel();
         l1.setBackground(Color.decode("#E8B345"));
         l1.setSize(500,500);
         l1.setOpaque(true);
-        JButton icon = new JButton(new ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\Mimmy.png"));
+        JButton icon = new JButton(new ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\Mimmy.png"));
         f.setLocationRelativeTo(null);
+        signUpBtn.setBounds(310,422,80,20);
+        signUpBtn.setBackground(Color.black);
+        signUpBtn.setForeground(Color.white);
+        signUp.setBounds(220,400,300,20);
+        signIn.setBounds(90, 60, 300, 30);
+        f.add(signUpBtn);
+        f.add(signUp);
+        f.add(signIn);
         f.add(l1);
         f.add(icon);
         f.setSize(500, 500);

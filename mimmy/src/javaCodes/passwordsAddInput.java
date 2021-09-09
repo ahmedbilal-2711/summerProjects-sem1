@@ -196,7 +196,7 @@ public class passwordsAddInput extends javax.swing.JFrame {
 
         getContentPane().add(dataPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 270));
 
-        back.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\src\\mimmy\\MIMMY\\src\\images\\passwordsInputBg.png")); // NOI18N
+        back.setIcon(new javax.swing.ImageIcon("H:\\summerProjects-sem1\\mimmy\\src\\images\\InputBg.png")); // NOI18N
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 320));
 
         pack();
