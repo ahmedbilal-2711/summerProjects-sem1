@@ -107,6 +107,7 @@ public class todo_list extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        time1 = new cambodia.raven.Time();
         back_btn = new javax.swing.JButton();
         TDL_pl = new javax.swing.JPanel();
         task_pl = new javax.swing.JScrollPane();
@@ -281,7 +282,7 @@ public class todo_list extends javax.swing.JFrame {
                 .addGroup(TDL_plLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(date_tf, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                     .addComponent(jTextField2))
-                .addGap(18, 163, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TDL_plLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(task_pl, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +298,7 @@ public class todo_list extends javax.swing.JFrame {
                             .addComponent(show_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TDL_plLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addComponent(history_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69))))
         );
@@ -362,8 +363,8 @@ public class todo_list extends javax.swing.JFrame {
     }//GEN-LAST:event_myTask_tfActionPerformed
 
     private void time_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_time_btnActionPerformed
-        time.showPopup();
-        time.setTextRefernce(time_tf);
+        time1.showPopup();
+        time1.setTextRefernce(time_tf);
     }//GEN-LAST:event_time_btnActionPerformed
 
     private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
@@ -519,6 +520,7 @@ public class todo_list extends javax.swing.JFrame {
     private javax.swing.JButton show_btn;
     private javax.swing.JScrollPane task_pl;
     private javax.swing.JTable task_tbl;
+    private cambodia.raven.Time time1;
     private javax.swing.JButton time_btn;
     private javax.swing.JLabel time_lbl;
     private javax.swing.JTextField time_tf;
