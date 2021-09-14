@@ -39,7 +39,28 @@ public class Moodselector extends javax.swing.JFrame  {
         public void moodsetter(String md)
         {
           TODOLIST t=new TODOLIST();
-        t.add("mood",stre,md,reason.getText());  
+        t.add("mood",stre,md,reason.getText());
+        int reply=JOptionPane.showConfirmDialog(null,"WOULD YOU LIKE TO HAVE SOME QUOTES ACCORDING TO YOUR MOOD?");
+        if(reply==JOptionPane.YES_OPTION)
+        {
+            if(md=="HAPPY")
+            {
+                quotegetter(1);
+                 JOptionPane.showMessageDialog(null,"HAVE A GOOD DAY");
+            }
+             if(md=="ANGRY")
+            {
+                quotegetter(2);
+                 JOptionPane.showMessageDialog(null,"HAVE A GOOD DAY");
+            }
+              if(md=="SAD")
+            {
+                quotegetter(3);
+                 JOptionPane.showMessageDialog(null,"HAVE A GOOD DAY");
+            }
+        }
+        else JOptionPane.showMessageDialog(null,"HAVE A GOOD DAY");
+       
         }
         
       
@@ -67,7 +88,7 @@ public class Moodselector extends javax.swing.JFrame  {
      
        return numberRow;
  }
-  public double moodchecker(String mood)
+  public double moodchecker(String mood,int colnum)
   {
       
       int counter=0;
@@ -84,7 +105,7 @@ public class Moodselector extends javax.swing.JFrame  {
                      
                  { 
                      
-                     if((rs.getString(2)).equals(mood))
+                     if((rs.getString(colnum)).equals(mood))
                  {
                      counter++;
                      
@@ -99,6 +120,38 @@ public class Moodselector extends javax.swing.JFrame  {
       
       return counter;
   }
+public void quotegetter(int colnum)
+{
+    
+   
+      try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mimmy", "root", "12345");
+
+            String sql ="select * from moodquotes";
+            PreparedStatement pst = conn.prepareStatement(sql);
+      
+            ResultSet rs = pst.executeQuery("select * from moodquotes"); 
+             if (rs != null)
+                 while(rs.next())
+                     
+                 { 
+                     
+                     JOptionPane.showMessageDialog(null, rs.getString(colnum));
+                 }
+            
+            //JOptionPane.showMessageDialog(null, "ADDED INTO " + tablename + " SUCCESFULLY");
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }}
+      
+     
+   
+    
+    
+    
 
   
     
@@ -220,14 +273,14 @@ public class Moodselector extends javax.swing.JFrame  {
                 .addGap(194, 194, 194))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 560, 170));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 560, 280));
 
         jButton1.setBackground(new java.awt.Color(179, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\AlPhA\\E-diary\\summerProjects-sem1\\mimmy\\src\\images\\previous.png")); // NOI18N
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\AlPhA\\E-diary\\summerProjects-sem1\\mimmy\\src\\images\\blue_bg.jpg")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 310));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 420));
 
         pack();
         setLocationRelativeTo(null);
@@ -254,9 +307,9 @@ public class Moodselector extends javax.swing.JFrame  {
     private void moodratioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moodratioActionPerformed
 
       int totalrows=getrows();
-      double fir=(moodchecker("HAPPY")*100)/totalrows;
-      double sec=(moodchecker("ANGRY")*100)/totalrows;
-      double thir=(moodchecker("SAD")*100)/totalrows;
+      double fir=(moodchecker("HAPPY",2)*100)/totalrows;
+      double sec=(moodchecker("ANGRY",2)*100)/totalrows;
+      double thir=(moodchecker("SAD",2)*100)/totalrows;
         try {
             Moodbars m=new Moodbars(fir,sec,thir);
         } catch (InterruptedException ex) {
