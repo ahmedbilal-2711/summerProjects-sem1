@@ -5,38 +5,99 @@
  */
 package javaCodes;
 
-import java.io.FileNotFoundException;
-import java.util.TimerTask;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
-import javaCodes.lock_gif;
+import static javaCodes.todo_list.main;
+import sun.security.util.Password;
 
 /**
  *
  * @author Maryam
  */
 public class Passcode extends javax.swing.JFrame {
-    /**
-     * Creates new form Passcode
-     */
+
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    int counter = 0;
+
     public Passcode() {
         initComponents();
+        CreateConnection();
     }
+
     private void doAction(JButton button) {
-    
-        password.setText(String.copyValueOf(password.getPassword()) + button.getText());
-    
+
+        password_txt.setText(String.copyValueOf(password_txt.getPassword()) + button.getText());
+
     }
+
     private void blank() {
-    
-        password.setText("");
+
+        username_txt.setText(null);
+        password_txt.setText(null);
         passwordchk.setSelected(false);
-    
+
     }
-    
+
+    public void CreateConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mimmy", "root", "password");
+            System.out.println("Database connection successful");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddressBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void Validation(String username, String password) {
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required");
+            return;
+        }
+        try {
+            String query = "Select username, password from validation_tbl WHERE username='" + username + "'";
+
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+            if (!rs.next()) {
+                JOptionPane.showMessageDialog(null, "Email not found!");
+                pst.close();
+                rs.close();
+                return;
+            }
+            if (username.equals(rs.getString("username"))) {
+                if (password.equals(rs.getString("password"))) {
+                    blank();
+                    dispose();
+                    lock_gif lg = new lock_gif();
+                    lg.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invaild Password!");
+                    blank();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,362 +108,188 @@ public class Passcode extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btn_10 = new javax.swing.JButton();
-        btn_1 = new javax.swing.JButton();
-        btn_12 = new javax.swing.JButton();
-        btn_9 = new javax.swing.JButton();
-        btn_8 = new javax.swing.JButton();
-        btn_7 = new javax.swing.JButton();
-        btn_4 = new javax.swing.JButton();
-        btn_5 = new javax.swing.JButton();
-        btn_6 = new javax.swing.JButton();
-        btn_3 = new javax.swing.JButton();
-        btn_2 = new javax.swing.JButton();
-        btn_11 = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
-        reset_btn = new javax.swing.JButton();
+        loop_lbl = new javax.swing.JLabel();
+        username_txt = new javax.swing.JTextField();
+        password_txt = new javax.swing.JPasswordField();
         login_btn = new javax.swing.JButton();
+        reset_btn = new javax.swing.JButton();
         passwordchk = new javax.swing.JCheckBox();
+        password_lbl = new javax.swing.JLabel();
+        username_lbl = new javax.swing.JLabel();
+        grey_lbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(890, 520));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        loop_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loop .gif"))); // NOI18N
+        loop_lbl.setPreferredSize(new java.awt.Dimension(500, 520));
+        getContentPane().add(loop_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 520));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loop.gif"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 504, 430));
+        username_txt.setBackground(new java.awt.Color(153, 153, 153));
+        username_txt.setForeground(new java.awt.Color(255, 255, 255));
+        username_txt.setBorder(null);
+        username_txt.setCaretColor(new java.awt.Color(255, 255, 255));
+        username_txt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        username_txt.setNextFocusableComponent(password_txt);
+        getContentPane().add(username_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 190, 30));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        password_txt.setBackground(new java.awt.Color(153, 153, 153));
+        password_txt.setForeground(new java.awt.Color(255, 255, 255));
+        password_txt.setBorder(null);
+        password_txt.setCaretColor(new java.awt.Color(255, 255, 255));
+        password_txt.setNextFocusableComponent(passwordchk);
+        getContentPane().add(password_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 250, 190, 30));
 
-        btn_10.setBackground(new java.awt.Color(102, 102, 102));
-        btn_10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_10.setForeground(new java.awt.Color(255, 255, 255));
-        btn_10.setText("*");
-        btn_10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_10.setFocusable(false);
-        btn_10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_10ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 60, 30));
-
-        btn_1.setBackground(new java.awt.Color(102, 102, 102));
-        btn_1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_1.setText("1");
-        btn_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_1.setFocusable(false);
-        btn_1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 30));
-
-        btn_12.setBackground(new java.awt.Color(102, 102, 102));
-        btn_12.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_12.setForeground(new java.awt.Color(255, 255, 255));
-        btn_12.setText("#");
-        btn_12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_12.setFocusable(false);
-        btn_12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_12ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 60, 30));
-
-        btn_9.setBackground(new java.awt.Color(102, 102, 102));
-        btn_9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_9.setForeground(new java.awt.Color(255, 255, 255));
-        btn_9.setText("9");
-        btn_9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_9.setFocusable(false);
-        jPanel3.add(btn_9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 60, 30));
-
-        btn_8.setBackground(new java.awt.Color(102, 102, 102));
-        btn_8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_8.setForeground(new java.awt.Color(255, 255, 255));
-        btn_8.setText("8");
-        btn_8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_8.setFocusable(false);
-        btn_8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_8ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 60, 30));
-
-        btn_7.setBackground(new java.awt.Color(102, 102, 102));
-        btn_7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_7.setForeground(new java.awt.Color(255, 255, 255));
-        btn_7.setText("7");
-        btn_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_7.setFocusable(false);
-        jPanel3.add(btn_7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 60, 30));
-
-        btn_4.setBackground(new java.awt.Color(102, 102, 102));
-        btn_4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_4.setForeground(new java.awt.Color(255, 255, 255));
-        btn_4.setText("4");
-        btn_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_4.setFocusable(false);
-        btn_4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 60, 30));
-
-        btn_5.setBackground(new java.awt.Color(102, 102, 102));
-        btn_5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_5.setForeground(new java.awt.Color(255, 255, 255));
-        btn_5.setText("5");
-        btn_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_5.setFocusable(false);
-        btn_5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 60, 30));
-
-        btn_6.setBackground(new java.awt.Color(102, 102, 102));
-        btn_6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_6.setForeground(new java.awt.Color(255, 255, 255));
-        btn_6.setText("6");
-        btn_6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_6.setFocusable(false);
-        btn_6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 60, 30));
-
-        btn_3.setBackground(new java.awt.Color(102, 102, 102));
-        btn_3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_3.setText("3");
-        btn_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_3.setFocusable(false);
-        btn_3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 60, 30));
-
-        btn_2.setBackground(new java.awt.Color(102, 102, 102));
-        btn_2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_2.setText("2");
-        btn_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_2.setFocusable(false);
-        btn_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 60, 30));
-
-        btn_11.setBackground(new java.awt.Color(102, 102, 102));
-        btn_11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btn_11.setForeground(new java.awt.Color(255, 255, 255));
-        btn_11.setText("0");
-        btn_11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btn_11.setFocusable(false);
-        btn_11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_11ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 60, 30));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 200, 150));
-
-        password.setBackground(new java.awt.Color(51, 51, 51));
-        password.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, 200, 30));
-
-        reset_btn.setBackground(new java.awt.Color(102, 102, 102));
-        reset_btn.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        reset_btn.setForeground(new java.awt.Color(255, 255, 255));
-        reset_btn.setText("Reset");
-        reset_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        reset_btn.setFocusable(false);
-        reset_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reset_btnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(reset_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 400, 80, 30));
-
-        login_btn.setBackground(new java.awt.Color(102, 102, 102));
+        login_btn.setBackground(new java.awt.Color(0, 0, 0));
         login_btn.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         login_btn.setForeground(new java.awt.Color(255, 255, 255));
         login_btn.setText("Login");
         login_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         login_btn.setFocusable(false);
+        login_btn.setNextFocusableComponent(reset_btn);
         login_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 login_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(login_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 400, 80, 30));
+        login_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                login_btnKeyPressed(evt);
+            }
+        });
+        getContentPane().add(login_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 80, 30));
 
-        passwordchk.setForeground(new java.awt.Color(255, 255, 255));
+        reset_btn.setBackground(new java.awt.Color(0, 0, 0));
+        reset_btn.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        reset_btn.setForeground(new java.awt.Color(255, 255, 255));
+        reset_btn.setText("Reset");
+        reset_btn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reset_btn.setFocusable(false);
+        reset_btn.setNextFocusableComponent(username_txt);
+        reset_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reset_btnActionPerformed(evt);
+            }
+        });
+        reset_btn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                reset_btnKeyPressed(evt);
+            }
+        });
+        getContentPane().add(reset_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 360, 80, 30));
+
+        passwordchk.setBackground(new java.awt.Color(0, 0, 0));
+        passwordchk.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         passwordchk.setText(" Show Password");
+        passwordchk.setNextFocusableComponent(login_btn);
         passwordchk.setOpaque(false);
         passwordchk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordchkActionPerformed(evt);
             }
         });
-        jPanel1.add(passwordchk, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 150, -1));
+        passwordchk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordchkKeyPressed(evt);
+            }
+        });
+        getContentPane().add(passwordchk, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 310, 150, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        password_lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        password_lbl.setText("Password");
+        getContentPane().add(password_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 80, 30));
+
+        username_lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        username_lbl.setText("Username");
+        getContentPane().add(username_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 80, 30));
+
+        grey_lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/grey.jpg"))); // NOI18N
+        getContentPane().add(grey_lbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 520));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_1ActionPerformed
-        btn_1.setText("1");
-        doAction(btn_1);
-    }//GEN-LAST:event_btn_1ActionPerformed
+    private void passwordchkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordchkKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-    private void btn_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_4ActionPerformed
-        btn_4.setText("4");
-        doAction(btn_4);
-    }//GEN-LAST:event_btn_4ActionPerformed
-
-    private void btn_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_5ActionPerformed
-        btn_5.setText("5");
-        doAction(btn_5);
-    }//GEN-LAST:event_btn_5ActionPerformed
-
-    private void btn_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_6ActionPerformed
-        btn_6.setText("6");
-        doAction(btn_6);
-    }//GEN-LAST:event_btn_6ActionPerformed
-
-    private void btn_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_3ActionPerformed
-        btn_3.setText("3");
-        doAction(btn_3);
-    }//GEN-LAST:event_btn_3ActionPerformed
-
-    private void btn_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_2ActionPerformed
-        btn_2.setText("2");
-        doAction(btn_2);
-    }//GEN-LAST:event_btn_2ActionPerformed
-
-    private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
-        password.setText(null);
-        passwordchk.setSelected(false);
-
-    }//GEN-LAST:event_reset_btnActionPerformed
-
-    private void btn_10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_10ActionPerformed
-        btn_10.setText("*");
-        doAction(btn_10);
-    }//GEN-LAST:event_btn_10ActionPerformed
-
-    private void btn_8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_8ActionPerformed
-        btn_8.setText("8");
-        doAction(btn_8);
-    }//GEN-LAST:event_btn_8ActionPerformed
-
-    private void btn_11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_11ActionPerformed
-        btn_11.setText("0");
-        doAction(btn_11);
-    }//GEN-LAST:event_btn_11ActionPerformed
-
-    private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
-
-        String pwdText;
-        pwdText = password.getText();
-        if (pwdText.equalsIgnoreCase("1234")) {
-            blank();
-            dispose();
-            lock_gif lg = new lock_gif();
-            lg.setVisible(true);
-//            dispose();
-//            hello_gif hg = new hello_gif();
-//            hg.setVisible(true);
-//            dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid Password");
-            blank();
-            password.setEchoChar('*');
-            password.requestFocus();
-            
-        }        
-    }//GEN-LAST:event_login_btnActionPerformed
+            counter++;
+            if(counter%2 != 0){
+                passwordchk.setSelected(true);
+            } else {
+                passwordchk.setSelected(false);
+            }
+            if (passwordchk.isSelected() == true) {
+                password_txt.setEchoChar((char) 0);
+            } else {
+                password_txt.setEchoChar('*');
+            }
+            passwordchk.requestFocus();;
+        }
+    }//GEN-LAST:event_passwordchkKeyPressed
 
     private void passwordchkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordchkActionPerformed
-        if (passwordchk.isSelected()) {
-            password.setEchoChar((char) 0);
+        if (passwordchk.isSelected() == true) {
+            password_txt.setEchoChar((char) 0);
         } else {
-            password.setEchoChar('*');
+            password_txt.setEchoChar('*');
         }
     }//GEN-LAST:event_passwordchkActionPerformed
 
-    private void btn_12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_12ActionPerformed
-        btn_12.setText("#");
-        doAction(btn_12);
-    }//GEN-LAST:event_btn_12ActionPerformed
+    private void login_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_login_btnKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            String password = "", username = "";
+            password = password_txt.getText();
+            username = username_txt.getText();
+            Validation(username, password);
+
+        }
+    }//GEN-LAST:event_login_btnKeyPressed
+
+    private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
+
+        String password = "", username = "";
+        password = password_txt.getText();
+        username = username_txt.getText();
+        Validation(username, password);
+    }//GEN-LAST:event_login_btnActionPerformed
+
+    private void reset_btnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reset_btnKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            blank();
+
+        }
+    }//GEN-LAST:event_reset_btnKeyPressed
+
+    private void reset_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_btnActionPerformed
+        blank();
+    }//GEN-LAST:event_reset_btnActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Passcode().setVisible(true);
             }
         });
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_1;
-    private javax.swing.JButton btn_10;
-    private javax.swing.JButton btn_11;
-    private javax.swing.JButton btn_12;
-    private javax.swing.JButton btn_2;
-    private javax.swing.JButton btn_3;
-    private javax.swing.JButton btn_4;
-    private javax.swing.JButton btn_5;
-    private javax.swing.JButton btn_6;
-    private javax.swing.JButton btn_7;
-    private javax.swing.JButton btn_8;
-    private javax.swing.JButton btn_9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel grey_lbl;
     private javax.swing.JButton login_btn;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JLabel loop_lbl;
+    private javax.swing.JLabel password_lbl;
+    private javax.swing.JPasswordField password_txt;
     private javax.swing.JCheckBox passwordchk;
     private javax.swing.JButton reset_btn;
+    private javax.swing.JLabel username_lbl;
+    private javax.swing.JTextField username_txt;
     // End of variables declaration//GEN-END:variables
 }
