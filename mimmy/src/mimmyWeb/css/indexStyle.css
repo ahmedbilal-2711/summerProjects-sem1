@@ -1,0 +1,67 @@
+
+
+*{
+    margin: 0%;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-image: url("../images/BgMain.png");
+    background-repeat: no-repeat;
+    background-position: cover cover/center;
+    background-size: 100%;
+    padding-right: 40px;
+}
+
+.Sec{
+    border: 2px solid white;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#rSec{
+    background-color: rgba(240, 248, 255, 0.24);
+    height: 350px;
+    margin-top: 150px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    width: 33%;
+    float: right;
+    padding: 15px 20px 15px 20px;
+    row-gap: 8px;
+    text-align: center;
+    box-shadow: -1px 3px 0px 10px rgba(255, 252, 252, 0.397) ;
+}
+
+.input{
+    border: 1px solid black;
+    width: 75%;
+    padding: 2px 5px 2px 5px;
+    border-radius: 5px;
+}
+
+#sign{
+    padding: 5px 8px 5px 8px;
+    font-size: 1.2rem;
+}
+
+/* General */
+button{
+    border-radius: 10px;
+    border: 1.5px solid black;
+}
+
+h1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+}
+
+button:hover{
+    cursor: pointer;
+    transition: background;
+    transition-duration: 500ms;
+    background-color: rgb(139, 118, 118);
+    font-weight: 800;
+}

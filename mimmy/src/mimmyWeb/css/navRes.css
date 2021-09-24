@@ -1,0 +1,22 @@
+#logo{
+    height: 30px;
+}
+
+ul{
+    position: absolute;
+    flex-flow: column wrap;
+    top: 45px;
+    left: 0;
+    width: 164px;
+}
+li{
+    width: 164px;
+    text-align: center;
+    background-color: #261c17d5;
+    padding: 10px 0px 10px 0px;
+}
+
+#resLogo{
+    height: 50px;
+    width: 85px;
+}

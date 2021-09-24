@@ -1,0 +1,50 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+nav{
+    background-color: #261C17;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    padding: 5px 20px 5px 10px;
+    gap: 30px;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+div ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px 8px 15px;
+    font-weight: 400;
+    font-size: larger;
+}
+
+div ul li a:hover{
+    background-color: blanchedalmond;
+    color: black;
+    border-radius: 8px;
+    transition: all;
+    transition-duration: 250ms;
+}
+
+#logo{
+    height: 50px;
+}
+
+.icons{
+    height: 30px;
+}
+
+#socialBox>a>img:hover{
+    transition-duration: 500ms;
+    transform: rotateY(360deg);
+    background-color: rgba(255, 255, 255, 0.479);
+}
