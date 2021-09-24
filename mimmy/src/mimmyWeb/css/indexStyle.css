@@ -65,3 +65,14 @@ button:hover{
     background-color: rgb(139, 118, 118);
     font-weight: 800;
 }
+
+#signupA{
+    font-size: 1rem;
+    font-weight: 700;
+    padding-top: 30px;
+}
+
+#signupA:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
