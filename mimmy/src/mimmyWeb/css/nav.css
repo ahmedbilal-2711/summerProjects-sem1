@@ -3,6 +3,12 @@
     padding: 0px;
 }
 
+#resLogo{
+    display: none;
+}
+#menuImg{
+    display: none;
+}
 nav{
     background-color: #261C17;
     display: flex;

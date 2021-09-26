@@ -1,8 +1,13 @@
 #logo{
-    height: 30px;
+    display: none;
 }
-
+#menuImg{
+    display: block;
+    height: 30px;
+    cursor: pointer;
+}
 ul{
+    display: none;
     position: absolute;
     flex-flow: column wrap;
     top: 45px;
@@ -17,6 +22,7 @@ li{
 }
 
 #resLogo{
-    height: 50px;
+    height: 45px;
     width: 85px;
+    display: block;
 }

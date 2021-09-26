@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mimmy.Home</title>
     <link rel="stylesheet" href="../css/indexStyle.css">
+    <link rel="stylesheet" href="../css/navRes.css">
 </head>
+
 <body>
-    <div class="Sec" id="rSec">
-        <h1>Sign In</h1>
-        <h3>to your Mimmy</h1>
-        <div>
-            <label for="em">Email:</label>
-            <input type="email" name="em" id="em" placeholder="xyz@abc.com" class="input">
+    <iframe src="nav.html" style="width:100%;Height:100%;" frameborder="0"></iframe>
+        <div class="Sec" id="rSec">
+            <div>
+                <h1>Sign In</h1>
+                <h3>to your Mimmy</h1>
+            </div>
+                <div>
+                    <label for="em">Email:</label>
+                    <input type="email" name="em" id="em" placeholder="xyz@abc.com" class="input">
+                </div>
+                <div>
+                    <label for="pass">Password:</label>
+                    <input type="text" name="pass" id="pass" placeholder="Password" class="input">
+                </div>
+                <button id="sign">Sign In</button>
+                <p id="signupA">Create Account</p>
         </div>
-        <div>
-            <label for="pass">Password:</label>
-            <input type="text" name="pass" id="pass" placeholder="Password" class="input">
-        </div>
-        <button id="sign" >Sign In</button>
-        <p id="signupA">Create Account</p>
-    </div>
     <script src="../js/index.js"></script>
 </body>
+
 </html>
