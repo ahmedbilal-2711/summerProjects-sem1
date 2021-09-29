@@ -1,6 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
+    background-color: rgb(218, 198, 186);
 }
 
 .section{
@@ -14,23 +15,73 @@
 }
 
 .detail{
-    text-align: center;
-}
-.detail>p{
-    display: none;
-}
-
-.devImg{
-    border-radius: 50px 0px 50px 0px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-between;
     width: 350px;
-    height: 330px;
+    padding: 15px 10px 15px 10px;
     border: 2px solid red;
-    border-radius: 50px 0px 50px 0px;
+    border-radius: 40px 0px 40px 0px;
+    gap: 20px;
+}
+.learn{
+    color:black;
+    font-size: 1.2rem;
+}
+.learn:hover{
+    font-weight: 600;
+    text-decoration: underline;
+    cursor:pointer
+}
+.devImg{
+    width: 300px;
+    height: 300px;
 }
 
-
+.devMedia{
+    width: 30px;
+    height: 30px;
+}
+.devMedia:hover{
+    /* animation: shake 200ms ease-in 0 1 normal forwards; */
+    animation-name: shakeBtn;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+}
+@keyframes shakeBtn{
+    0%{
+        transform: skewY(-20deg);
+    }
+    50%{
+        transform: skewY(0deg);
+    }
+    75%{
+        transform: skewY(20deg);
+    }
+    100%{
+        transform: skewY(0deg);
+    }
+}
+#devPara1,#devPara2,#devPara3{
+    transition-duration: 1000ms;
+    display: none;
+    transform: scale(0,0);
+    transform-origin: left;
+}
 /* General */
 h1{
     text-align: center;
     padding: 10px 0px;
+    font-style: oblique;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+p{
+    font-size: 1.2rem;
 }

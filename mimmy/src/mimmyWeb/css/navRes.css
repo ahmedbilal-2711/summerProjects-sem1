@@ -7,7 +7,9 @@
     cursor: pointer;
 }
 ul{
-    display: none;
+    transform-origin: left;
+    transition: 2000ms;
+    transform: scale(0,1);
     position: absolute;
     flex-flow: column wrap;
     top: 45px;
