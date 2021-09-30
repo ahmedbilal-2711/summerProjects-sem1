@@ -23,6 +23,7 @@ lma.forEach(element => {
     element.addEventListener('click',()=>{
         if(element.innerHTML=="Learn More"){
             if(element.id=="learn1" && para[0].id=="abt1"){
+                aboutDev.innerHTML=null;
                 aboutDev.appendChild(text1);
                 para[0].appendChild(aboutDev);
                 para[0].lastChild.style.transform=("scale(0,0)");
@@ -34,6 +35,7 @@ lma.forEach(element => {
                 }, 100);
             }
             else if(element.id=="learn2"  && para[1].id=="abt2"){
+                aboutDev.innerHTML=null;
                 aboutDev.appendChild(text2);
                 para[1].appendChild(aboutDev);
                 para[1].lastChild.style.transform=("scale(0,0)");
@@ -45,6 +47,7 @@ lma.forEach(element => {
                 }, 100);
             }
             else{
+                aboutDev.innerHTML=null;
                 aboutDev.appendChild(text3);
                 para[2].appendChild(aboutDev);
                 para[2].lastChild.style.transform=("scale(0,0)");
@@ -61,16 +64,23 @@ lma.forEach(element => {
             element.innerHTML="Learn More";
             if(element.id.includes("learn1")){
                 para[0].removeChild(document.querySelector(".detail>p"));
-                aboutDev.innerHTML=null;
             }
             else if(element.id.includes("learn2")){
                 para[1].removeChild(document.querySelector(".detail>p"));
-                aboutDev.innerHTML=null;
             }
             else{
                 para[2].removeChild(document.querySelector(".detail>p"));
-                aboutDev.innerHTML=null;
             }
         }
     });
 });
+
+//Vision Box
+let visionBox=document.getElementById("vision");
+let angle=0;
+setInterval(() => {
+    angle+=180;
+    visionBox.style.transform=`rotateY(${angle}deg)`;
+    visionBox.style.transitionDuration='5000ms';
+    console.log(`rotateY(${angle}+180deg)`);
+}, 5000);
