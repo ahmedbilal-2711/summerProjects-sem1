@@ -18,7 +18,7 @@ body{
     flex-flow: column wrap; 
 } 
 #rSec{
-    margin-top: 40px;
+    margin-top: 180px;
     float: right;
     margin-right: 50px;
     background-color: rgba(158, 207, 250, 0.24);

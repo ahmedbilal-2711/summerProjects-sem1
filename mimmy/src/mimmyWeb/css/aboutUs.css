@@ -101,16 +101,21 @@ p{
 .features{
     width: 450px;
     height: 350px;
+    filter: blur(2px);
+    border-radius: 50% / 20%;
+}
+
+.features:hover,.devImg:hover{
+    transform: scale(1.03);
+    filter: blur(0);
 }
 
 /* Vision Box */
 #vision{
     display: flex;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-#vision>p{
-    display: none;
+    padding: 20px 15px 20px 15px;
+    gap: 30px;
 }

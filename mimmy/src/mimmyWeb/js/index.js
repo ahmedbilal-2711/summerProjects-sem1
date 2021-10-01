@@ -1,7 +1,6 @@
 let signup = document.getElementById("signupA");
 let box = document.getElementById("rSec");
 let c=box.children;
-console.log(c);
 signup.addEventListener('click',()=>{
     if(c[4].innerHTML=="Create Account"){
         box.style.transitionDuration="2000ms";
@@ -32,3 +31,5 @@ signup.addEventListener('click',()=>{
         }, 500);
     }
 });
+
+console.log(window.outerHeight);

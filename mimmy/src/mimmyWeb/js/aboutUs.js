@@ -63,24 +63,39 @@ lma.forEach(element => {
         else{
             element.innerHTML="Learn More";
             if(element.id.includes("learn1")){
-                para[0].removeChild(document.querySelector(".detail>p"));
+                para[0].lastChild.style.transformOrigin=("top");
+                para[0].lastChild.style.transform=("scale(0,0)");
+                para[0].lastChild.style.transitionDuration=("1000ms");
+                setTimeout(() => {
+                    para[0].removeChild(document.querySelector(".detail>p"));
+                }, 500);
             }
             else if(element.id.includes("learn2")){
-                para[1].removeChild(document.querySelector(".detail>p"));
+                para[1].lastChild.style.transformOrigin=("top");
+                para[1].lastChild.style.transform=("scale(0,0)");
+                para[1].lastChild.style.transitionDuration=("1000ms");
+                setTimeout(() => {
+                    para[1].removeChild(document.querySelector(".detail>p"));
+                }, 1000);
             }
             else{
-                para[2].removeChild(document.querySelector(".detail>p"));
+                para[2].lastChild.style.transformOrigin=("top");
+                para[2].lastChild.style.transform=("scale(0,0)");
+                para[2].lastChild.style.transitionDuration=("1000ms");
+                setTimeout(() => {
+                    para[2].removeChild(document.querySelector(".detail>p"));
+                }, 1000);
             }
         }
     });
 });
 
 //Vision Box
-let visionBox=document.getElementById("vision");
+let visionBox=document.querySelector("#vision>img");
 let angle=0;
 setInterval(() => {
     angle+=180;
     visionBox.style.transform=`rotateY(${angle}deg)`;
     visionBox.style.transitionDuration='5000ms';
-    console.log(`rotateY(${angle}+180deg)`);
 }, 5000);
+console.log(window.outerHeight);
