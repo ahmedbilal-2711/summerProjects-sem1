@@ -6,6 +6,11 @@
     height: 30px;
     cursor: pointer;
 }
+
+.icons{
+    width: 30px;
+    height: 30px;
+}
 ul{
     transform-origin: left;
     transition: 2000ms;
@@ -25,6 +30,6 @@ li{
 
 #resLogo{
     height: 45px;
-    width: 85px;
+    width: 72px;
     display: block;
 }

@@ -1,0 +1,19 @@
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    min-height: 100%;
+    background-position: center;
+}
+
+#rSec{
+    margin-top: 5%;
+    float: none;
+    width: 70%;
+    margin-right: 0px;
+    margin-top: 0px;
+}

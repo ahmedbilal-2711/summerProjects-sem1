@@ -31,5 +31,3 @@ signup.addEventListener('click',()=>{
         }, 500);
     }
 });
-
-console.log(window.outerHeight);
