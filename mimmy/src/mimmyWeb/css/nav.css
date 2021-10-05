@@ -14,7 +14,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 35px;
+    height: 30px;
     padding: 5px 20px 5px 10px;
     gap: 30px;
 }
@@ -53,4 +53,18 @@ div ul li a:hover{
     transition-duration: 500ms;
     transform: rotateY(360deg);
     background-color: rgba(255, 255, 255, 0.479);
+}
+
+/* Footer */
+#foot{
+    background-color: #361403;
+    color: white;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 15px;
+    font-size: 0.7rem;
+    padding-left: 25px;
+    padding-right: 25px;
 }

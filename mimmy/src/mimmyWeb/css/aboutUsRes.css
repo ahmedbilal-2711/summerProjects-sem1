@@ -1,0 +1,20 @@
+/* About Us and Vision Section */
+#vision,.services,#aboutSec{
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#vision>p,.services>p{
+    width: 73%;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutSec{
+    gap: 20px;
+}
+
+.detail{
+    gap: 5px;
+}

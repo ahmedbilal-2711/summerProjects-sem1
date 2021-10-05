@@ -1,4 +1,22 @@
-//Hover on dev amazing animation
+//Vision Box
+let visionBox=document.getElementById("rotImg");
+let visionBoxImg=document.querySelector("#rotImg>img");
+let angle=0;
+setInterval(() => {
+    angle+=180;
+    setTimeout(() => {
+        if (angle%360===0) {
+            visionBoxImg.style.transform='rotateY(0deg)';
+        }
+        else{
+            visionBoxImg.style.transform='rotateY(-180deg)';
+        }
+    }, 950);
+    visionBox.style.transform=`rotateY(${angle}deg)`;
+    visionBox.style.transitionDuration='3500ms';
+}, 3500);
+
+//About Developers
 let dev=document.getElementsByClassName("devImg");
 let para=document.querySelectorAll(".detail");
 let lm=document.getElementsByClassName("learn");
@@ -19,6 +37,8 @@ similique deserunt incidunt rerum cumque. Voluptas fuga, consequatur tenetur qui
 cumque sequi, a quo omnis doloribus nemo dolores facere ut est minus harum! Eos, iure in! In,
 voluptatibus voluptates! Architecto delectus deserunt enim ea esse praesentium!`);
 
+
+// Learn More in About Dev
 lma.forEach(element => {
     element.addEventListener('click',()=>{
         if(element.innerHTML=="Learn More"){
@@ -31,7 +51,7 @@ lma.forEach(element => {
                 setTimeout(() => {
                     para[0].lastChild.style.transformOrigin=("top");
                     para[0].lastChild.style.transform=("scale(1,1)");
-                    para[0].lastChild.style.transitionDuration=("1000ms");
+                    para[0].lastChild.style.transitionDuration=("800ms");
                 }, 100);
             }
             else if(element.id=="learn2"  && para[1].id=="abt2"){
@@ -43,7 +63,7 @@ lma.forEach(element => {
                 setTimeout(() => {
                     para[1].lastChild.style.transformOrigin=("top");
                     para[1].lastChild.style.transform=("scale(1,1)");
-                    para[1].lastChild.style.transitionDuration=("1000ms");
+                    para[1].lastChild.style.transitionDuration=("800ms");
                 }, 100);
             }
             else{
@@ -55,11 +75,12 @@ lma.forEach(element => {
                 setTimeout(() => {
                     para[2].lastChild.style.transformOrigin=("top");
                     para[2].lastChild.style.transform=("scale(1,1)");
-                    para[2].lastChild.style.transitionDuration=("1000ms");
+                    para[2].lastChild.style.transitionDuration=("800ms");
                 }, 100);
             }
             element.innerHTML="Learn Less";
         }
+        // Learn Less in About Dev
         else{
             element.innerHTML="Learn More";
             if(element.id.includes("learn1")){
@@ -68,7 +89,7 @@ lma.forEach(element => {
                 para[0].lastChild.style.transitionDuration=("1000ms");
                 setTimeout(() => {
                     para[0].removeChild(document.querySelector(".detail>p"));
-                }, 500);
+                }, 250);
             }
             else if(element.id.includes("learn2")){
                 para[1].lastChild.style.transformOrigin=("top");
@@ -76,7 +97,7 @@ lma.forEach(element => {
                 para[1].lastChild.style.transitionDuration=("1000ms");
                 setTimeout(() => {
                     para[1].removeChild(document.querySelector(".detail>p"));
-                }, 1000);
+                }, 250);
             }
             else{
                 para[2].lastChild.style.transformOrigin=("top");
@@ -84,18 +105,8 @@ lma.forEach(element => {
                 para[2].lastChild.style.transitionDuration=("1000ms");
                 setTimeout(() => {
                     para[2].removeChild(document.querySelector(".detail>p"));
-                }, 1000);
+                }, 250);
             }
         }
     });
 });
-
-//Vision Box
-let visionBox=document.querySelector("#vision>img");
-let angle=0;
-setInterval(() => {
-    angle+=180;
-    visionBox.style.transform=`rotateY(${angle}deg)`;
-    visionBox.style.transitionDuration='5000ms';
-}, 5000);
-console.log(window.outerHeight);
